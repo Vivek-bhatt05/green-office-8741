@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+    <div id="up">
+        <h2>Join Fiverr</h2>
+        <div><a href="https://www.facebook.com/" style="color: white";>Continue with Facebook</a></div>
+        <div><a href="https://www.google.com/" style="color: black";>Continue with Google</a></div>
+        <div><a href="https://www.apple.com/" style="color: black";>Continue with Apple</a></div>
+        <hr>
+        <div>
+          <form>
+              <input type="text" id="namee" placeholder="Email / Username" required>
+              <input type="password" id="passs" placeholder="Password" required>
+              <input type="submit" value="Continue">
+          </form>
+        </div>
+        <hr>
+        <p>Not a member yet?<a href="signup.html">Join now</a></p>
+    </div>
+</body>
+</html>
+<script>
+    let arr=JSON.parse(localStorage.getItem("person"))||[];
+
+    let form=document.querySelector("form");
+    form.addEventListener("submit",signin);
+
+    function signin(ele){
+       event.preventDefault();
+        let emaile=form.namee.value;
+        let passw=form.passs.value;
+        let c=0;
+
+        arr.map(function(e){
+            if(e.pEmail==emaile){
+                if(e.pPass==passw){
+                    alert("Logged in");
+                    window.location.href="products.html";
+                }else{
+                    alert("password wrong");
+                }
+                c++;
+            }
+        });
+        
+        if(c==0){
+            alert("Username doesn't exist,please join");
+            window.location.href="signup.html";
+        }
+    }
+</script>

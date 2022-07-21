@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div id="up">
+        <h2>Join Fiverr</h2>
+        <div><a href="https://www.facebook.com/" style="color: white";>Continue with Facebook</a></div>
+        <div><a href="https://www.google.com/" style="color: black";>Continue with Google</a></div>
+        <div><a href="https://www.apple.com/" style="color: black";>Continue with Apple</a></div>
+        <hr>
+        <div>
+            <form>    
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <input type="text" id="name" placeholder="Enter your name" required>
+                <input type="password" id="pass" placeholder="Enter your password" required>
+                <input type="submit" value="Continue">
+            </form>
+        </div>
+            <p>By joining I agree to recieve emails from Fiverr</p>
+        <hr>
+        <p>Already a member?<a href="signin.html">Sign In</a></p>
+    </div>
+</body>
+</html>
+<script>
+    let form=document.querySelector("form");
+    form.addEventListener("submit",signup);
+
+    let storeArr=JSON.parse(localStorage.getItem("person"))||[];
+    function signup(e){
+      event.preventDefault();
+       let obj={
+        pEmail:form.email.value,
+        pName:form.name.value,
+        pPass:form.pass.value,
+       }
+       storeArr.push(obj);
+       alert("sign up successful");
+       localStorage.setItem("person",JSON.stringify(storeArr));
+       window.location.href="signin.html";
+    }
+</script>
