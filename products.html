@@ -216,14 +216,9 @@
 
     function cart(ele,i){
 
-        for(let i=0;i<cartArr.length;i++){
-            if(cartArr[i].proId===ele.proId){
-                alert ("Service already added");
-                return
-            }
-        }
       cartArr.push(ele);
       alert ("Service added");
       localStorage.setItem("cart",JSON.stringify(cartArr));
+      window.location.href="checkout.html";
     }
 </script>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+
+         #main{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #container{
+            width: 70%;
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px;
+        }
+        #container>div{
+            text-align: center;
+            border: 1px solid grey;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+        #container img{
+            width: 100%;
+        }
+        button{
+            margin-bottom: 5px;
+        }
+        button:hover{
+            cursor: pointer;
+        }
+        #pay{
+            width: 50%;
+            border: 1px solid teal;
+            padding: 10px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+        label,input{
+            margin: 10px 0px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main">
+
+        <div id="container"></div>
+        
+        <div id="pay">
+            
+            <form>
+                <h4>Payment Options</h4>
+                <hr>
+                <input type="radio" id="card" name="pay" value="credit and debit card" required>
+                <label for="">Credit & Debit Cards</label><br>
+                
+                <div>
+                    <div>
+                        <label>Card number :</label>
+                        <input type="number" required>
+                    </div>
+                    <div>
+                        <label>Expiry Date :</label>
+                        <input type="date" required>
+                    </div>
+                    <div>
+                        <label>CVV :</label>
+                        <input type="number" required>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="First Name" required>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+
+                </div>
+                
+                <hr>
+                <input type="submit" value="Pay Now">
+            </form>
+            
+        </div>
+    </div>
+    </body>
+    </html>
+    <script>
+        let cartArr=JSON.parse(localStorage.getItem("cart"))||[];
+   
+    let container =document.getElementById("container");
+
+    
+    function display(data){
+        container.innerText="";
+        data.forEach(function(ele,i){
+            let box=document.createElement("div");
+            let img=document.createElement("img");
+            img.src=ele.img;
+            let h4=document.createElement("h4");
+            h4.innerText=ele.name;
+            let p=document.createElement("p");
+            p.innerText=ele.para;
+            let rating=document.createElement("h5");
+            rating.innerText= "Rating :"+ele.rating;
+            let price=document.createElement("p");
+            price.innerText="Price :"+ele.price;
+
+                
+             box.append(img,h4,p,rating,price);
+             container.append(box);
+            })
+        }
+        display(cartArr);
+
+
+        let form=document.querySelector("form");
+        form.addEventListener("submit",order);
+
+        function order(ele,i){
+            event.preventDefault();
+
+            alert("ordered successfully");
+ 
+            localStorage.removeItem("cart");
+            window.location.href="products.html";
+        }
+</script>
